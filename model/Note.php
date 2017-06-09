@@ -21,5 +21,9 @@
 			return $this->note;
 		}
 		
+		public function toString(){
+			return $this->id." : ".$this->jeu." : ".$this->note;
+		}
+		
 	}
 ?>

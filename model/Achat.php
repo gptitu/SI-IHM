@@ -31,5 +31,9 @@
 			return $this->pu;
 		}
 		
+		public function toString(){
+			return $this->id." : ".$this->utilisateur." : ".$this->jeu." : ".$this->datePayement." : ".$this->pu;
+		}
+		
 	}
 ?>
