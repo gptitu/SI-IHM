@@ -79,7 +79,7 @@
 		}
 		
 		public function showAll(){
-			$commentaires[] = $this->loadData();
+			$commentaires[] = $this->loadData(null);
 			$i = 0;
 			while($i <= count($commentaires)){
 					echo $commentaires[$i]->toString();

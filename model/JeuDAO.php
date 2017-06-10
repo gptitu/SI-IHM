@@ -79,7 +79,7 @@
 		}
 		
 		public function showAll(){
-			$jeux[] = $this->loadData();
+			$jeux[] = $this->loadData(null);
 			$i = 0;
 			while($i <= count($jeux)){
 					echo $jeux[$i]->toString();
