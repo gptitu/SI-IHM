@@ -16,7 +16,11 @@
 		}		
 		
 		public function loadData($condition){
-			$this->result = $this->co->query("SELECT * from Jeu".$condition);
+			$request = "SELECT * from Jeu";
+			if($condition != null){
+				$request = $request." ".$condition;
+			}
+			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_game = null;
 			while($_jeu = $this->result->fetch()){
