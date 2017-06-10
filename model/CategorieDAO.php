@@ -69,9 +69,9 @@
 		}
 		
 		public function showAll(){
-			$categories[] = $this->loadData(null);
+			$categories = $this->loadData(null);
 			$i = 0;
-			while($i <= count($categories)){
+			while($i < count($categories)){
 					echo $categories[$i]->toString();
 					$i++;
 			}

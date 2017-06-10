@@ -69,9 +69,9 @@
 		}
 		
 		public function showAll(){
-			$constructeurs[] = $this->loadData(null);
+			$constructeurs = $this->loadData(null);
 			$i = 0;
-			while($i <= count($constructeurs)){
+			while($i < count($constructeurs)){
 					echo $constructeurs[$i]->toString();
 					$i++;
 			}
