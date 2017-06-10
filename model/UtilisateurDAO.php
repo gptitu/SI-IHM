@@ -6,10 +6,10 @@
 		
 		private $user;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}		
 		
 		public function loadData($condition){
@@ -17,7 +17,7 @@
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
-			$this->result = $this->co->query($request);
+			$this->result = $this->bdd->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_utilisateur = null;
 			while($_utilisateur = $this->result->fetch()){

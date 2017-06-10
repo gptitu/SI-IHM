@@ -1,27 +1,41 @@
 <?php
 	
 	include('Commentaire.php');
+	include('Utilisateur.php');
+	include('UtilisateurDAO.php');
+	include('Jeu.php');
+	include('JeuDAO.php');
 	
 	class CommentaireDAO{
 		
 		private $comm;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}		
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Commentaire";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
-			$this->result = $this->co->query($request);
+			
+			$this->result = $this->bdd->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
+			
+			$utilisateurdao = new UtilisateurDAO($this->bdd);
+			$jeudao = new JeuDAO($this->bdd);
+			$utilisateur = null;
+			$jeu =null;
 			$_commentaire = null;
+			
 			while($_commentaire = $this->result->fetch()){
-				$comm[] = new Commentaire($_commentaire->id, $_commentaire->jeu, $_commentaire->dateCom, $_commentaire->commentaire);
+				$utilisateur = $utilisateurdao->loadData("Where id = " . $_commentaire->utilisateur);
+				$jeu = $jeudao->loadData("Where id = " . $_commentaire->jeu);
+				$comm[] = new Commentaire($_commentaire->id, $utilisateur, $jeu, $_commentaire->dateCom, $_commentaire->commentaire);
 			} return $comm;
 		}
 		
@@ -31,7 +45,7 @@
 				
 				if(!$this->exists($_commentaire)){
 				
-					$n = $this->bdd->exec("INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getJeu()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')");
+					$n = $this->bdd->exec("INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getUtilisateur()."', '".$_commentaire->getJeu()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')");
 					return $n;
 				
 				} else{ echo 'Cet objet existe deja !'; }
@@ -55,7 +69,7 @@
 			
 			if($_commentaire instanceof Commentaire){
 				
-				$settings = "SET id='".$_commentaire->getId()."', jeu='".$_commentaire->getJeu()."', dateCom='".$_commentaire->getDateCom()."', commentaire='".$_commentaire->getCommentaire()."'";
+				$settings = "SET id='".$_commentaire->getId()."', utilisateur='".$_commentaire->getUtilisateur()."', jeu='".$_commentaire->getJeu()."', dateCom='".$_commentaire->getDateCom()."', commentaire='".$_commentaire->getCommentaire()."'";
 				
 				$n = $this->bdd->exec("UPDATE commentaire ".$settings." WHERE id='".$_commentaire->getId()."'"); 
 				return $n;

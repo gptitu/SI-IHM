@@ -2,8 +2,8 @@
 	class Achat{
 		
 		private $id = "";
-		private $utilisateur = "";
-		private $jeu = "";
+		private $utilisateur = null;
+		private $jeu = null;
 		private $datePayement = "";
 		private $pu = "";
 		
@@ -32,7 +32,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->utilisateur." : ".$this->jeu." : ".$this->datePayement." : ".$this->pu."<br/>";
+			return $this->id." : ".$this->utilisateur->getId()." : ".$this->jeu->getId()." : ".$this->datePayement." : ".$this->pu."<br/>";
 		}
 		
 	}

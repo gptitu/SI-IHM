@@ -2,7 +2,7 @@
 	class Note{
 		
 		private $id = "";
-		private $jeu = "";
+		private $jeu = null;
 		private $note = "";
 		
 		public function __construct($i, $j, $n){
@@ -22,7 +22,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->jeu." : ".$this->note."<br/>";
+			return $this->id." : ".$this->jeu->getId()." : ".$this->note."<br/>";
 		}
 		
 	}

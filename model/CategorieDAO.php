@@ -6,20 +6,24 @@
 		
 		private $categorie;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}		
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Categorie";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
-			$this->result = $this->co->query($request);
+			
+			$this->result = $this->bdd->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
+			
 			$_categorie = null;
+			
 			while($_categorie = $this->result->fetch()){
 				$categorie[] = new Categorie($_categorie->id, $_categorie->categorie);
 			} return $categorie;

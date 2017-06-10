@@ -1,27 +1,41 @@
 <?php
 	
 	include('Achat.php');
+	include('Utilisateur.php');
+	include('UtilisateurDAO.php');
+	include('Jeu.php');
+	include('JeuDAO.php');
 	
 	class AchatDAO{
 		
 		private $purchase;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}	
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Achat";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
-			$this->result = $this->co->query($request);
+			
+			$this->result = $this->bdd->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
+			
+			$utilisateurdao = new UtilisateurDAO($this->bdd);
+			$jeudao = new JeuDAO($this->bdd);
+			$utilisateur = null;
+			$jeu =null;
 			$_achat = null;
+			
 			while($_achat = $this->result->fetch()){
-				$purchase[] = new Achat($_achat->id, $_achat->utilisateur, $_achat->jeu, $_achat->datePayement, $_achat->pu);
+				$utilisateur = $utilisateurdao->loadData("Where id = " . $_achat->utilisateur);
+				$jeu = $jeudao->loadData("Where id = " . $_achat->jeu);
+				$purchase[] = new Achat($_achat->id, $utilisateur, $jeu, $_achat->datePayement, $_achat->pu);
 			} return $purchase;
 		}
 		
