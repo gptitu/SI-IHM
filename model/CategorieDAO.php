@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findCategorie(){
-			$this->result = $this->co->query("SELECT * from Categorie");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Categorie".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_categorie = null;
 			while($_categorie = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $categorie;
 		}
 		
-		public function insertCategorie($_categorie){
+		public function insertData($_categorie){
 			
 			if($_categorie instanceof Categorie){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteCategorie($_categorie){
+		public function deleteData($_categorie){
 			
 			if($_categorie instanceof Categorie){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateCategorie($_categorie){
+		public function updateData($_categorie){
 			
 			if($_categorie instanceof Categorie){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$categories[] = $this->findCategorie();
+			$categories[] = $this->loadData();
 			$i = 0;
 			while($i <= count($categories)){
 					echo $categories[$i]->toString();

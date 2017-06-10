@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findJeu(){
-			$this->result = $this->co->query("SELECT * from Jeu");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Jeu".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_game = null;
 			while($_jeu = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $game;
 		}
 		
-		public function insertJeu($_jeu){
+		public function insertData($_jeu){
 			
 			if($_jeu instanceof Jeu){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteJeu($_jeu){
+		public function deleteData($_jeu){
 			
 			if($_jeu instanceof Jeu){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateJeu($_jeu){
+		public function updateData($_jeu){
 			
 			if($_jeu instanceof Jeu){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$jeux[] = $this->findJeu();
+			$jeux[] = $this->loadData();
 			$i = 0;
 			while($i <= count($jeux)){
 					echo $jeux[$i]->toString();

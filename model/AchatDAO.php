@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findAchat(){
-			$this->result = $this->co->query("SELECT * from Achat");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Achat".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_achat = null;
 			while($_achat = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $purchase;
 		}
 		
-		public function insertAchat($_achat){
+		public function insertData($_achat){
 			
 			if($_achat instanceof Achat){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteAchat($_achat){
+		public function deleteData($_achat){
 			
 			if($_achat instanceof Achat){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateAchat($_achat){
+		public function updateData($_achat){
 			
 			if($_achat instanceof Achat){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$achats[] = $this->findAchat();
+			$achats[] = $this->loadData();
 			$i = 0;
 			while($i <= count($achats)){
 					echo $achats[$i]->toString();

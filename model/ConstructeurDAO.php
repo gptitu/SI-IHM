@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findConstructeur(){
-			$this->result = $this->co->query("SELECT * from Constructeur");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Constructeur".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_constructeur = null;
 			while($_constructeur = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $constructeur;
 		}
 		
-		public function insertConstructeur($_constructeur){
+		public function insertData($_constructeur){
 			
 			if($_constructeur instanceof Constructeur){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteConstructeur($_constructeur){
+		public function deleteData($_constructeur){
 			
 			if($_constructeur instanceof Constructeur){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateConstructeur($_constructeur){
+		public function updateData($_constructeur){
 			
 			if($_constructeur instanceof Constructeur){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$constructeurs[] = $this->findConstructeur();
+			$constructeurs[] = $this->loadData();
 			$i = 0;
 			while($i <= count($constructeurs)){
 					echo $constructeurs[$i]->toString();
