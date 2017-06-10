@@ -1,18 +1,15 @@
 <?php
 	
-	include('model.php');
 	include('Utilisateur.php');
 	
 	class UtilisateurDao{
 		
 		private $user;
 		private $result;
-		private $c = null;
+		private $connexion = null;
 		
-		public function __construct(){
-			
-			$this->c = getConnexion("pgsql", 5432, "jeux", "postgres", "root");
-			
+		public function __construct($connexion){
+			$this->connexion = $connexion;
 		}		
 		
 		public function loadData($condition){
