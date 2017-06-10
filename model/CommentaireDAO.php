@@ -16,7 +16,11 @@
 		}		
 		
 		public function loadData($condition){
-			$this->result = $this->co->query("SELECT * from Commentaire".$condition);
+			$request = "SELECT * from Commentaire";
+			if($condition != null){
+				$request = $request." ".$condition;
+			}
+			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_commentaire = null;
 			while($_commentaire = $this->result->fetch()){

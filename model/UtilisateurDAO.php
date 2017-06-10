@@ -16,7 +16,11 @@
 		}		
 		
 		public function loadData($condition){
-			$this->result = $this->co->query("SELECT * from Utilisateur".$condition);
+			$request = "SELECT * from Utilisateur";
+			if($condition != null){
+				$request = $request." ".$condition;
+			}
+			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_utilisateur = null;
 			while($_utilisateur = $this->result->fetch()){

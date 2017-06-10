@@ -16,7 +16,11 @@
 		}		
 		
 		public function loadData($condition){
-			$this->result = $this->co->query("SELECT * from Constructeur".$condition);
+			$request = "SELECT * from Constructeur";
+			if($condition != null){
+				$request = $request." ".$condition;
+			}
+			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_constructeur = null;
 			while($_constructeur = $this->result->fetch()){

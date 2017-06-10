@@ -16,7 +16,11 @@
 		}		
 		
 		public function loadData($condition){
-			$this->result = $this->co->query("SELECT * from Achat".$condition);
+			$request = "SELECT * from Achat";
+			if($condition != null){
+				$request = $request." ".$condition;
+			}
+			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_achat = null;
 			while($_achat = $this->result->fetch()){
