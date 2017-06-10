@@ -3,8 +3,8 @@
 		
 		private $id = "";
 		private $nom = "";
-		private $categorie = "";
-		private $constructeur = "";
+		private $categorie = null;
+		private $constructeur = null;
 		private $dateSortie = "";
 		private $image = "";
 		private $prix = "";
@@ -42,7 +42,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->nom." : ".$this->categorie" : ".$this->constructeur." : ".$this->dateSortie." : ".$this->image." : ".$this->prix."<br/>";
+			return $this->id." : ".$this->nom." : ".$this->categorie->getId()" : ".$this->constructeur->getId()." : ".$this->dateSortie." : ".$this->image." : ".$this->prix."<br/>";
 		}
 		
 	}

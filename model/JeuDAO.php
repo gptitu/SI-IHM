@@ -1,27 +1,41 @@
 <?php
 	
 	include('Jeu.php');
+	include('Categorie.php');
+	include('CategorieDAO.php');
+	include('Constructeur.php');
+	include('ConstructeurDAO.php');
 	
 	class JeuDao{
 		
 		private $game;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}		
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Jeu";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
+			
 			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
-			$_game = null;
+			
+			$categoriedao = new CategorieDAO($this->bdd);
+			$constructeurdao = new ConstructeurDAO($this->bdd);
+			$constructeur = null;
+			$categorie =null;
+			$_jeu = null;
+			
 			while($_jeu = $this->result->fetch()){
-				$game[] = new Jeu($_jeu->id, $_jeu->nom, $_jeu->categorie, $_jeu->constructeur, $_jeu->dateSortie, $_jeu->image, $_jeu->prix);
+				$categorie = $categoriedao->loadData("Where id = " . $_jeu->categorie);
+				$constructeur = $constructeurdao->loadData("Where id = " . $_jeu->constructeur);
+				$game[] = new Jeu($_jeu->id, $_jeu->nom, $categorie, $constructeur, $_jeu->dateSortie, $_jeu->image, $_jeu->prix);
 			} return $game;
 		}
 		

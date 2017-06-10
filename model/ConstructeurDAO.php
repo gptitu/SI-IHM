@@ -6,20 +6,24 @@
 		
 		private $constructeur;
 		private $result;
-		private $connexion = null;
+		private $bdd = null;
 		
 		public function __construct($connexion){
-			$this->connexion = $connexion;
+			$this->bdd = $connexion;
 		}			
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Constructeur";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
-			$this->result = $this->co->query($request);
+			
+			$this->result = $this->bdd->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
+			
 			$_constructeur = null;
+			
 			while($_constructeur = $this->result->fetch()){
 				$constructeur[] = new Constructeur($_constructeur->id, $_constructeur->nom);
 			} return $constructeur;

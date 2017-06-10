@@ -1,6 +1,8 @@
 <?php
 	
 	include('Note.php');
+	include('Jeu.php');
+	include('JeuDAO.php');
 	
 	class NoteDAO{
 		
@@ -13,15 +15,22 @@
 		}		
 		
 		public function loadData($condition){
+			
 			$request = "SELECT * from Note";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
+			
 			$this->result = $this->co->query($request);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
+			
+			$jeudao = new JeuDAO($this->bdd);
+			$jeu =null;
 			$_note = null;
+			
 			while($_note = $this->result->fetch()){
-				$notes[] = new Note($_note->id, $_note->jeu, $_note->note);
+				$jeu = $jeudao->loadData("Where id = " . $_note->jeu);
+				$notes[] = new Note($_note->id, $jeu, $_note->note);
 			} return $notes;
 		}
 		
