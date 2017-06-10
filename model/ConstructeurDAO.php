@@ -67,7 +67,7 @@
 			$constructeurs[] = $this->findConstructeur();
 			$i = 0;
 			while($i <= count($constructeurs)){
-					return $constructeurs[$i]->id." : ".$constructeurs[$i]->nom"<br/>";
+					echo $constructeurs[$i]->toString();
 					$i++;
 			}
 		}

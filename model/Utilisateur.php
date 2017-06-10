@@ -27,7 +27,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->username." : ".$this->email." : ".$this->password;
+			return $this->id." : ".$this->username." : ".$this->email." : ".$this->password."<br/>";
 		}
 		
 	}

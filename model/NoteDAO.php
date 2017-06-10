@@ -67,7 +67,7 @@
 			$not[] = $this->findNote();
 			$i = 0;
 			while($i <= count($not)){
-					return $not[$i]->id." : ".$not[$i]->jeu." : ".$not[$i]->note."<br/>";
+					echo $not[$i]->toString();
 					$i++;
 			}
 		}

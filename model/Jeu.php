@@ -42,7 +42,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->nom." : ".$this->categorie" : ".$this->constructeur." : ".$this->dateSortie." : ".$this->image." : ".$this->prix;
+			return $this->id." : ".$this->nom." : ".$this->categorie" : ".$this->constructeur." : ".$this->dateSortie." : ".$this->image." : ".$this->prix."<br/>";
 		}
 		
 	}
