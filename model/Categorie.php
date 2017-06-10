@@ -16,5 +16,8 @@
 			return $this->categorie;
 		}
 		
+		public function toString(){
+			return $this->id." : ".$this->categorie;
+		}
 	}
 ?>

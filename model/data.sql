@@ -26,6 +26,7 @@ Create table Jeu(
 	categorie varchar(5),
 	constructeur varchar(5),
 	dateSortie date,
+	image varchar(255),
 	prix numeric(10, 2),
 	PRIMARY KEY(id),
 	FOREIGN KEY(constructeur) REFERENCES Constructeur(id),

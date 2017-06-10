@@ -63,6 +63,14 @@
 			
 		}
 		
+		public function showAll(){
+			$users[] = $this->findUser();
+			$i = 0;
+			while($i <= count($user)){
+					return $users[$i]->id." : ".$users[$i]->username." : ".$users[$i]->email." : ".$users[$i]->password."<br/>";
+					$i++;
+			}
+		}		
 		
 	}
 ?>

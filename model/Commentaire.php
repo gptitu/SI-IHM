@@ -26,5 +26,9 @@
 			return $this->commentaire;
 		}
 		
+		public function toString(){
+			return $this->id." : ".$this->jeu." : ".$this->dateCom." : ".$this->commentaire;
+		}
+		
 	}
 ?>

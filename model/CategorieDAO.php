@@ -63,6 +63,14 @@
 			
 		}
 		
+		public function showAll(){
+			$categories[] = $this->findCategorie();
+			$i = 0;
+			while($i <= count($categories)){
+					return $categories[$i]->id." : ".$categories[$i]->categorie."<br/>";
+					$i++;
+			}
+		}
 		
 	}
 ?>

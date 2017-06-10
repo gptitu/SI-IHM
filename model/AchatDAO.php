@@ -63,6 +63,14 @@
 			
 		}
 		
+		public function showAll(){
+			$achats[] = $this->findAchat();
+			$i = 0;
+			while($i <= count($achats)){
+					return $achats[$i]->id." : ".$achats[$i]->utilisateur." : ".$achats[$i]->jeu." : ".$achats[$i]->datePayement." : ".$achats[$i]->pu."<br/>";
+					$i++;
+			}
+		}
 		
 	}
 ?>
