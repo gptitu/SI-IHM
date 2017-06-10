@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findUser(){
-			$this->result = $this->co->query("SELECT * from Utilisateur");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Utilisateur".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_utilisateur = null;
 			while($_utilisateur = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $user;
 		}
 		
-		public function insertUser($_utilisateur){
+		public function insertData($_utilisateur){
 			
 			if($_utilisateur instanceof Utilisateur){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteUser($_utilisateur){
+		public function deleteData($_utilisateur){
 			
 			if($_utilisateur instanceof Utilisateur){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateUser($_utilisateur){
+		public function updateData($_utilisateur){
 			
 			if($_utilisateur instanceof Utilisateur){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$users[] = $this->findUser();
+			$users[] = $this->loadData();
 			$i = 0;
 			while($i <= count($user)){
 					echo $users[i]->toString();

@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findCommentaire(){
-			$this->result = $this->co->query("SELECT * from Commentaire");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Commentaire".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_commentaire = null;
 			while($_commentaire = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $comm;
 		}
 		
-		public function insertCommentaire($_commentaire){
+		public function insertData($_commentaire){
 			
 			if($_commentaire instanceof Commentaire){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteCommentaire($_commentaire){
+		public function deleteData($_commentaire){
 			
 			if($_commentaire instanceof Commentaire){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateCommentaire($_commentaire){
+		public function updateData($_commentaire){
 			
 			if($_commentaire instanceof Commentaire){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$commentaires[] = $this->findCommentaire();
+			$commentaires[] = $this->loadData();
 			$i = 0;
 			while($i <= count($commentaires)){
 					echo $commentaires[$i]->toString();

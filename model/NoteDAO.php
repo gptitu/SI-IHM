@@ -15,8 +15,8 @@
 			
 		}		
 		
-		public function findNote(){
-			$this->result = $this->co->query("SELECT * from Note");
+		public function loadData($condition){
+			$this->result = $this->co->query("SELECT * from Note".$condition);
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_note = null;
 			while($_note = $this->result->fetch()){
@@ -24,7 +24,7 @@
 			} return $notes;
 		}
 		
-		public function insertNote($_note){
+		public function insertData($_note){
 			
 			if($_note instanceof Note){
 				
@@ -39,7 +39,7 @@
 			
 		}
 		
-		public function deleteNote($_note){
+		public function deleteData($_note){
 			
 			if($_note instanceof Note){
 				
@@ -50,7 +50,7 @@
 			
 		}
 		
-		public function updateNote($_note){
+		public function updateData($_note){
 			
 			if($_note instanceof Note){
 				
@@ -64,7 +64,7 @@
 		}
 		
 		public function showAll(){
-			$not[] = $this->findNote();
+			$not[] = $this->loadData();
 			$i = 0;
 			while($i <= count($not)){
 					echo $not[$i]->toString();
