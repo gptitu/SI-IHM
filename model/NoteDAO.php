@@ -74,7 +74,7 @@
 		}
 		
 		public function showAll(){
-			$not[] = $this->loadData();
+			$not[] = $this->loadData(null);
 			$i = 0;
 			while($i <= count($not)){
 					echo $not[$i]->toString();

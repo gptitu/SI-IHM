@@ -79,7 +79,7 @@
 		}
 		
 		public function showAll(){
-			$achats[] = $this->loadData();
+			$achats[] = $this->loadData(null);
 			$i = 0;
 			while($i <= count($achats)){
 					echo $achats[$i]->toString();

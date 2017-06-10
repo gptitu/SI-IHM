@@ -65,7 +65,7 @@
 		}
 		
 		public function showAll(){
-			$users[] = $this->loadData();
+			$users[] = $this->loadData(null);
 			$i = 0;
 			while($i <= count($user)){
 					echo $users[i]->toString();
