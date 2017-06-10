@@ -27,7 +27,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->jeu." : ".$this->dateCom." : ".$this->commentaire;
+			return $this->id." : ".$this->jeu." : ".$this->dateCom." : ".$this->commentaire."<br/>";
 		}
 		
 	}

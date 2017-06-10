@@ -22,7 +22,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->jeu." : ".$this->note;
+			return $this->id." : ".$this->jeu." : ".$this->note."<br/>";
 		}
 		
 	}

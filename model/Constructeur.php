@@ -17,7 +17,7 @@
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->nom;
+			return $this->id." : ".$this->nom."<br/>";
 		}
 	}
 ?>

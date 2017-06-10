@@ -67,7 +67,7 @@
 			$jeux[] = $this->findJeu();
 			$i = 0;
 			while($i <= count($jeux)){
-					return $jeux[$i]->id." : ".$jeux[$i]->nom." : ".$jeux[$i]->categorie." : ".$jeux[$i]->constructeur." : ".$jeux[$i]->dateSortie." : ".$jeux[$i]->image." : ".$jeux[$i]->prix."<br/>";
+					echo $jeux[$i]->toString();
 					$i++;
 			}
 		}

@@ -67,7 +67,7 @@
 			$commentaires[] = $this->findCommentaire();
 			$i = 0;
 			while($i <= count($commentaires)){
-					return $commentaires[$i]->id." : ".$commentaires[$i]->jeu." : ".$commentaires[$i]->dateCom." : ".$commentaires[$i]->commentaire."<br/>";
+					echo $commentaires[$i]->toString();
 					$i++;
 			}
 		}
