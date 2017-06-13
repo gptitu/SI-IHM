@@ -14,7 +14,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Categorie";
+			$request = "SELECT categ.* from Categorie categ";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}

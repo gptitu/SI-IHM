@@ -13,7 +13,7 @@
 		}		
 		
 		public function loadData($condition){
-			$request = "SELECT * from Utilisateur";
+			$request = "SELECT user.* from Utilisateur user";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}

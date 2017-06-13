@@ -1,10 +1,10 @@
 <?php
 	
 	include('Achat.php');
-	include('Utilisateur.php');
+	/*include('Utilisateur.php');
 	include('UtilisateurDAO.php');
 	include('Jeu.php');
-	include('JeuDAO.php');
+	include('JeuDAO.php');*/
 	
 	class AchatDAO{
 		
@@ -18,7 +18,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Achat";
+			$request = "SELECT achat.* from Achat achat";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}

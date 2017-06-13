@@ -1,10 +1,10 @@
 <?php
 	
 	include('Commentaire.php');
-	include('Utilisateur.php');
+	/*include('Utilisateur.php');
 	include('UtilisateurDAO.php');
 	include('Jeu.php');
-	include('JeuDAO.php');
+	include('JeuDAO.php');*/
 	
 	class CommentaireDAO{
 		
@@ -18,7 +18,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Commentaire";
+			$request = "SELECT com.* from Commentaire com";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
