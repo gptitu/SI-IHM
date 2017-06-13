@@ -14,7 +14,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Constructeur";
+			$request = "SELECT cons.* from Constructeur cons";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}

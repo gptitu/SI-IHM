@@ -7,15 +7,17 @@
 		private $constructeur = null;
 		private $dateSortie = "";
 		private $image = "";
+		private $note = "";
 		private $prix = "";
 		
-		public function __construct($i, $n, $ca, $co, $ds, $im, $p){
+		public function __construct($i, $n, $ca, $co, $ds, $im, $no, $p){
 			$this->id = $i;
 			$this->nom = $n;
 			$this->categorie = $ca;
 			$this->constructeur = $co;
 			$this->dateSortie = $ds;
 			$this->image = $im;
+			$this->note = $no;
 			$this->prix = $p;
 		}
 		
@@ -37,12 +39,15 @@
 		public function getImage(){
 			return $this->image;
 		}
+		public function getNote(){
+			return $this->note;
+		}
 		public function getPrix(){
 			return $this->prix;
 		}
 		
 		public function toString(){
-			return $this->id." : ".$this->nom." : ".$this->categorie->getId()." : ".$this->constructeur->getId()." : ".$this->dateSortie." : ".$this->image." : ".$this->prix."<br/>";
+			return $this->id." : ".$this->nom." : ".$this->categorie->getId()." : ".$this->constructeur->getId()." : ".$this->dateSortie." : ".$this->image." : ".$this->note." : ".$this->prix."<br/>";
 		}
 		
 	}
