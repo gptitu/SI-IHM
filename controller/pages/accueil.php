@@ -6,8 +6,9 @@
 	require '../inc/CategorieDAO.php';
 	require '../inc/JeuDAO.php';
 	require '../inc/OtherDAO.php';
+	require '../inc/Utilisateur.php';
 	
-	$bdd = getConnexion("pgsql", "5432", "JeuAchat", "postgres", "11111996rga");
+	$bdd = getConnexion("pgsql", "5432", "GameBuy", "postgres", "11111996rga");
 	
 	$cgdao = new CategorieDAO($bdd);
 	$jeudao = new JeuDAO($bdd);
@@ -24,13 +25,41 @@
 				LIMIT 3";
 	$topVentes = $odao->loadData($query);
 	
-	$condition = "ORDER BY jeu.dateSortie DESC LIMIT 3";
-	$nouveautes = $jeudao->loadData($condition);
+	$condition2 = "ORDER BY jeu.dateSortie DESC LIMIT 3";
+	$nouveautes = $jeudao->loadData($condition2);
 	
-	$query = "SELECT jeu, COUNT(*) as nb
+	$query2 = "SELECT jeu, COUNT(*) as nb
 				FROM Achat GROUP BY jeu
 				ORDER BY nb LIMIT 3";
-	$decouvrir = $odao->loadData($query);
+	$decouvrir = $odao->loadData($query2);
+	
+	session_start();
+	
+	$tof = false;
+	
+	if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
+		
+		if(isset($_SESSION["user"])){
+			
+			$tof = true;
+			
+		} else{
+			
+			session_destroy();
+			
+		}
+		
+	} else{
+		
+		session_destroy();
+		
+	}
+	
+	if(isset($_GET["error"]) && $_GET["error"] == '2'){
+		
+		echo '<script>alert("Veuillez saisir quelque chose")</script>';
+		
+	}
 
 ?>
 
@@ -42,7 +71,7 @@
 	
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href=""/>
-		<title></title> 
+		<title>GameBuy - Accueil</title> 
 	
 	</head>
 	
@@ -55,6 +84,8 @@
 				<div>
 				
 					<!-- LOGO -->
+					
+					<a href="accueil.php">Logo</a>
 				
 				</div>
 				
@@ -62,11 +93,13 @@
 				
 					<!-- RECHERCHE -->
 					
-					<form action="" method="get">
+					<form action="search.php" method="get">
 					
 						<div>
 					
 							<select name="searchCateg">
+							
+									<option value="CA000">Toutes les categories</option>
 							
 								<?php for($i = 0; $i < count($categories); $i++){ ?>
 							
@@ -98,7 +131,15 @@
 				
 					<!-- LOGIN -->
 					
-					<a href="#">Login</a>
+					<?php if(!$tof){ ?>
+					
+						<a href="login.php">Login</a>
+						
+					<?php } else{ ?>
+					
+						<a href="memberSpace.php"><?php echo $_SESSION["user"]->getUsername(); ?></a>
+					
+					<?php } ?>
 				
 				</div><hr>
 				
@@ -119,7 +160,7 @@
 					
 						<!-- TITRE DU JEU -->
 						
-						<a href="#"><?php echo $aLaUne[0]->getNom(); ?></a>
+						<a href="fiche.php?id=<?php echo $aLaUne[0]->getId(); ?>"><?php echo $aLaUne[0]->getNom(); ?></a>
 					
 					</div>
 					
@@ -140,6 +181,32 @@
 					</div>
 				
 				</div><hr/>
+				
+				<div>
+					
+					<form action="" method="post">
+					
+						<div>
+						
+							<h3>Numero de carte de credit :</h3>
+						
+						</div>
+					
+						<div>
+						
+							<input type="text" name="creditCard" placeholder="HG65-HF64-JG53"/>
+						
+						</div>
+						
+						<div>
+						
+							<button>Acheter</button>
+						
+						</div>
+					
+					</form>
+				
+				</div><br/><hr/>
 			
 			</header>
 			
@@ -169,7 +236,7 @@
 					
 						for($i = 0; $i < count($topVentes); $i++){
 							
-							$jeu = $jeudao->loadData("WHERE id='" . $topVentes[$i]->jeu . "'");
+							$jeu1 = $jeudao->loadData("WHERE id='" . $topVentes[$i]->jeu . "'");
 					
 					?>
 					
@@ -189,7 +256,7 @@
 								
 									<!-- NOTE -->
 									
-									<span><?php echo $jeu[0]->getNote(); ?></span>
+									<span><?php echo $jeu1[0]->getNote(); ?></span>
 								
 								</div>
 								
@@ -197,7 +264,7 @@
 								
 									<!-- TITRE -->
 									
-									<a href="#"><?php echo $jeu[0]->getNom(); ?></a>
+									<a href="fiche.php?id=<?php echo $jeu1[0]->getId(); ?>"><?php echo $jeu1[0]->getNom(); ?></a>
 								
 								</div>
 								
@@ -205,7 +272,7 @@
 								
 									<!-- PRIX -->
 									
-									<span><?php echo $jeu[0]->getPrix(); ?></span>
+									<span><?php echo $jeu1[0]->getPrix(); ?></span>
 								
 								</div>
 								
@@ -213,7 +280,7 @@
 								
 									<!-- CATEGORIE -->
 									
-									<span><?php echo $jeu[0]->getCategorie()->getCategorie(); ?></span>
+									<span><?php echo $jeu1[0]->getCategorie()->getCategorie(); ?></span>
 								
 								</div>
 							
@@ -283,7 +350,7 @@
 								
 									<!-- TITRE -->
 									
-									<a href="#"><?php echo $nouveautes[$i]->getNom(); ?></a>
+									<a href="fiche.php?id=<?php echo $nouveautes[$i]->getId(); ?>"><?php echo $nouveautes[$i]->getNom(); ?></a>
 								
 								</div>
 								
@@ -343,7 +410,7 @@
 					
 						for($i = 0; $i < count($decouvrir); $i++){
 							
-							$jeu = $jeudao->loadData("WHERE id='" . $decouvrir[$i]->jeu . "'");
+							$jeu2 = $jeudao->loadData("WHERE id='" . $decouvrir[$i]->jeu . "'");
 					
 					?>
 					
@@ -363,7 +430,7 @@
 								
 									<!-- NOTE -->
 									
-									<span><?php echo $jeu[0]->getNote(); ?></span>
+									<span><?php echo $jeu2[0]->getNote(); ?></span>
 								
 								</div>
 								
@@ -371,7 +438,7 @@
 								
 									<!-- TITRE -->
 									
-									<a href="#"><?php echo $jeu[0]->getNom(); ?></a>
+									<a href="fiche.php?id=<?php echo $jeu2[0]->getId(); ?>"><?php echo $jeu2[0]->getNom(); ?></a>
 								
 								</div>
 								
@@ -379,7 +446,7 @@
 								
 									<!-- PRIX -->
 									
-									<span><?php echo $jeu[0]->getPrix(); ?></span>
+									<span><?php echo $jeu2[0]->getPrix(); ?></span>
 								
 								</div>
 								
@@ -387,7 +454,7 @@
 								
 									<!-- CATEGORIE -->
 									
-									<span><?php echo $jeu[0]->getCategorie()->getCategorie(); ?></span>
+									<span><?php echo $jeu2[0]->getCategorie()->getCategorie(); ?></span>
 								
 								</div>
 							
