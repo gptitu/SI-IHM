@@ -1,10 +1,10 @@
 <?php
 	
 	include('Commentaire.php');
-	include('Utilisateur.php');
+	/*include('Utilisateur.php');
 	include('UtilisateurDAO.php');
 	include('Jeu.php');
-	include('JeuDAO.php');
+	include('JeuDAO.php');*/
 	
 	class CommentaireDAO{
 		
@@ -18,7 +18,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Commentaire";
+			$request = "SELECT com.* from Commentaire com";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
@@ -33,9 +33,9 @@
 			$_commentaire = null;
 			
 			while($_commentaire = $this->result->fetch()){
-				$utilisateur = $utilisateurdao->loadData("Where id = " . $_commentaire->utilisateur);
-				$jeu = $jeudao->loadData("Where id = " . $_commentaire->jeu);
-				$comm[] = new Commentaire($_commentaire->id, $utilisateur, $jeu, $_commentaire->dateCom, $_commentaire->commentaire);
+				$utilisateur = $utilisateurdao->loadData("Where id = '" . $_commentaire->utilisateur."'");
+				$jeu = $jeudao->loadData("Where id = '" . $_commentaire->jeu."'");
+				$comm[] = new Commentaire($_commentaire->id, $utilisateur[0], $jeu[0], $_commentaire->datecom, $_commentaire->commentaire);
 			} return $comm;
 		}
 		

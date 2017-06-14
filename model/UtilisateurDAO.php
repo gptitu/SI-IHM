@@ -13,7 +13,7 @@
 		}		
 		
 		public function loadData($condition){
-			$request = "SELECT * from Utilisateur";
+			$request = "SELECT util.* from Utilisateur util";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
@@ -67,8 +67,8 @@
 		public function showAll(){
 			$users = $this->loadData(null);
 			$i = 0;
-			while($i < count($user)){
-					echo $users[i]->toString();
+			while($i < count($users)){
+					echo $users[$i]->toString();
 					$i++;
 			}
 		}		

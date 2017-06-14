@@ -1,10 +1,10 @@
 <?php
 	
 	include('Achat.php');
-	include('Utilisateur.php');
+	/*include('Utilisateur.php');
 	include('UtilisateurDAO.php');
 	include('Jeu.php');
-	include('JeuDAO.php');
+	include('JeuDAO.php');*/
 	
 	class AchatDAO{
 		
@@ -18,7 +18,7 @@
 		
 		public function loadData($condition){
 			
-			$request = "SELECT * from Achat";
+			$request = "SELECT achat.* from Achat achat";
 			if($condition != null){
 				$request = $request." ".$condition;
 			}
@@ -33,9 +33,9 @@
 			$_achat = null;
 			
 			while($_achat = $this->result->fetch()){
-				$utilisateur = $utilisateurdao->loadData("Where id = " . $_achat->utilisateur);
-				$jeu = $jeudao->loadData("Where id = " . $_achat->jeu);
-				$purchase[] = new Achat($_achat->id, $utilisateur, $jeu, $_achat->datePayement, $_achat->pu);
+				$utilisateur = $utilisateurdao->loadData("Where id = '" . $_achat->utilisateur."'");
+				$jeu = $jeudao->loadData("Where id = '" . $_achat->jeu."'");
+				$purchase[] = new Achat($_achat->id, $utilisateur[0], $jeu[0], $_achat->datepayement, $_achat->pu);
 			} return $purchase;
 		}
 		
