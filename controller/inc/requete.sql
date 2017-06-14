@@ -12,3 +12,6 @@ LIMIT 3;
 SELECT jeu.* FROM Jeu jeu
 ORDER BY jeu.dateSortie DESC
 LIMIT 3;
+
+SELECT jeu.* FROM Jeu jeu
+WHERE categorie='' AND nom LIKE '%%';
