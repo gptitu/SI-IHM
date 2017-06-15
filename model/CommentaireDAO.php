@@ -45,7 +45,7 @@
 				
 				if(!$this->exists($_commentaire)){
 				
-					$n = $this->bdd->exec("INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getUtilisateur()."', '".$_commentaire->getJeu()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')");
+					$n = $this->bdd->exec("INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getUtilisateur()->getId()."', '".$_commentaire->getJeu()->getId()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')");
 					return $n;
 				
 				} else{ echo 'Cet objet existe deja !'; }
@@ -69,7 +69,7 @@
 			
 			if($_commentaire instanceof Commentaire){
 				
-				$settings = "SET id='".$_commentaire->getId()."', utilisateur='".$_commentaire->getUtilisateur()."', jeu='".$_commentaire->getJeu()."', dateCom='".$_commentaire->getDateCom()."', commentaire='".$_commentaire->getCommentaire()."'";
+				$settings = "SET id='".$_commentaire->getId()."', utilisateur='".$_commentaire->getUtilisateur()->getId()."', jeu='".$_commentaire->getJeu()->getId()."', dateCom='".$_commentaire->getDateCom()."', commentaire='".$_commentaire->getCommentaire()."'";
 				
 				$n = $this->bdd->exec("UPDATE commentaire ".$settings." WHERE id='".$_commentaire->getId()."'"); 
 				return $n;
