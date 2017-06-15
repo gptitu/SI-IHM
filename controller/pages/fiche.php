@@ -107,7 +107,7 @@
 					
 					<?php if(!$tof){ ?>
 					
-						<a href="login.php">Login</a>
+						<a href="#loginSignup">Login</a> <!-- login.php -->
 						
 					<?php } else{ ?>
 					
@@ -115,7 +115,99 @@
 					
 					<?php } ?>
 				
-				</div>
+				</div><hr/>
+				
+				<div id="loginSignup">
+				
+					<div>
+				
+						<!-- CONNECTEZ-VOUS -->
+						
+						<div>
+						
+							<h3>Connectez-vous</h3>
+						
+						</div>
+						
+						<div>
+						
+							<form action="verifLogin.php" method="post">
+							
+								<div>
+							
+									<input type="text" name="username" placeholder="Nom d'utilisateur"/> 
+								
+								</div>
+								
+								<div>
+								
+									<input type="password" name="password" placeholder="Mots de passe"/> 
+								
+								</div>
+								
+								<div>
+								
+									<button type="submit">Se connecter</button>
+								
+								</div>
+							
+							</form>
+						
+						</div>
+					
+					</div>
+					
+					<div>
+					
+						<!-- INSCRIVEZ-VOUS -->
+						
+						<div>
+						
+							<h3>Inscrivez-vous</h3>
+						
+						</div>
+						
+						<div>
+						
+							<form action="verifSignup.php" method="post">
+							
+								<div>
+								
+									<input type="text" name="username" placeholder="Nom d'utilisateur"/>
+								
+								</div>
+								
+								<div>
+								
+									<input type="email" name="email" placeholder="Email"/>
+								
+								</div>
+								
+								<div>
+								
+									<input type="password" name="password" placeholder="Mots de passe"/>
+								
+								</div>
+								
+								<div>
+								
+									<input type="password" name="password2" placeholder="Confirmer mots de passe"/>
+								
+								</div>
+								
+								<div>
+								
+									<button type="submit">S'inscrire</button>
+								
+								</div>
+							
+							</form>
+						
+						</div>
+					
+					</div>
+				
+				</div><br/>
 			
 			</header><hr/>
 			
@@ -199,7 +291,7 @@
 						
 							<!-- LIEN ACHAT -->
 							
-							<a href="#">Acheter</a>
+							<a href="#divAchat">Acheter</a>
 						
 						</div>
 					
@@ -247,7 +339,7 @@
 				
 					<!-- SECTION ACHAT -->
 					
-					<div>
+					<div id="divAchat">
 					
 						<form action="" method="post">
 						
