@@ -10,7 +10,7 @@
 		public function __construct($i, $u, $j, $d, $p){
 			$this->id = $i;
 			$this->utilisateur = $u;
-			$this->jeu = $m;
+			$this->jeu = $j;
 			$this->datePayement= $p;
 			$this->password = $p;
 		}
