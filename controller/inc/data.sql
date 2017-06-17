@@ -32,6 +32,7 @@ Create table Jeu(
 	constructeur varchar(5),
 	dateSortie date,
 	image varchar(255),
+	lien varchar(255),
 	note numeric(2, 1),
 	prix numeric(10, 2),
 	PRIMARY KEY(id),
@@ -101,26 +102,26 @@ insert into Categorie values('CA009', 'Course');
 insert into Categorie values('CA010', 'Combat');
 insert into Categorie values('CA011', 'MMORPG');
 
-insert into Jeu values('J0001', 'Overwatch', 'Overwatch est un jeu vidéo de tir en vue subjective en ligne développé et publié par Blizzard Entertainment.', 'CA001', 'CO002', '24-05-2016', 'ow.jpg', '5.0', '39.99');
-insert into Jeu values('J0002', 'Fifa 17', 'FIFA 17 est un jeu vidéo de football développé par EA Canada et édité par Electronic Arts.', 'CA002', 'CO003', '27-09-2016', 'ff17.jpg', '4.5', '19.99');
-insert into Jeu values('J0003', 'Assassins Creed Syndicate', 'Assassins Creed Syndicate est un jeu vidéo d action-aventure et d infiltration développé par Ubisoft Québec et édité par Ubisoft.', 'CA003', 'CO001', '23-10-2015', 'asscs.jpg', '4.0', '39.99');
-insert into Jeu values('J0004', 'The Division', 'Tom Clancy’s The Division est un jeu vidéo en ligne à monde ouvert de tir tactique et d action-RPG développé par Ubisoft.', 'CA003', 'CO001', '08-03-2016', 'td.jpg', '4.0', '49.99');
-insert into Jeu values('J0005', 'Watch Dogs 2', 'Watch Dogs 2, typographié WATCH_DOGS 2, est un jeu vidéo d action-aventure et d infiltration développé par le studio Ubisoft Montréal et édité par Ubisoft.', 'CA008', 'CO001', '29-11-2016', 'wd2.jpg', '4.5', '59.99');
-insert into Jeu values('J0006', 'Far Cry Primal', 'Far Cry Primal est un jeu vidéo d action-aventure à la première personne développé par Ubisoft Montréal se déroulant dans un monde ouvert à l Âge de la pierre.', 'CA004', 'CO001', '23-02-2016', 'fcp.jpg', '4.0', '49.99');
-insert into Jeu values('J0007', 'Call of Duty: Infinite Warfare', 'Call of Duty: Infinite Warfare est un jeu vidéo de tir à la première personne développé par Infinity Ward et édité par Activision.', 'CA001', 'CO004', '04-11-2016', 'cod.jpg', '4.5', '59.99');
-insert into Jeu values('J0008', 'Counter-Strike: Global Offensive', 'Counter-Strike: Global Offensive est un jeu de tir à la première personne multijoueur en ligne basé sur le jeu d équipe développé par Valve Corporation.', 'CA001', 'CO008', '21-08-2012', 'csgo.jpg', '4.0', '14.99');
-insert into Jeu values('J0009', 'Dota', 'Dota 2 est un jeu vidéo de type arène de bataille en ligne multijoueur développé et édité par Valve Corporation.', 'CA006', 'CO008', '09-07-2013', 'dota.jpg', '4.0', '0.00');
-insert into Jeu values('J0010', 'NBA 2k17', 'NBA 2K17 est un jeu vidéo de basket-ball dévéloppé par Visual Concepts et édité par 2K Sports.', 'CA002', 'CO013', '20-09-2016', 'nba2k17.jpg', '4.5', '59.99');
-insert into Jeu values('J0011', 'Titanfall 2', 'Titanfall 2 est un jeu vidéo de tir en vue à la première personne développé par Respawn Entertainment et édité par Electronic Arts.', 'CA001', 'CO003', '28-10-2016', 'tf2.jpg', '4.0', '39.99');
-insert into Jeu values('J0012', 'Dirt 4', 'Dirt 4 est un jeu vidéo de course de rallye automobile et il est le quatrième de la série DiRT développé et publié par Codemasters.', 'CA009', 'CO011', '09-06-2017', 'dirt4.jpg', '4.5', '59.99');
-insert into Jeu values('J0013', 'Outlast 2', 'Outlast 2 est un jeu vidéo de survival horror en vue à la première personne développé et édité par Red Barrels.', 'CA005', 'CO001', '25-04-2017', 'ol2.jpg', '4.0', '29.99');
-insert into Jeu values('J0014', 'Battlefield 1', 'Battlefield 1 est un jeu vidéo de tir à la première personne développé par DICE.', 'CA001', 'CO005', '21-10-2016', 'bf1.jpg', '4.0', '23.99');
-insert into Jeu values('J0015', 'Mirrors Edge Catalyst', 'Mirrors Edge Catalyst est un jeu vidéo développé par DICE et édité par Electronic Arts.', 'CA003', 'CO005', '09-06-2016', 'mec.jpg', '3.5', '12.99');
-insert into Jeu values('J0016', 'Grand Theft Auto V', 'Grand Theft Auto V est un jeu vidéo d action-aventure édité Rockstar Games', 'CA004', 'CO010', '17-09-2013', 'gta5.jpg', '4.0', '59.99');
-insert into Jeu values('J0017', 'Tekken 7', 'Tekken 7 est un jeu vidéo de combat de la série Tekken développé et édité par Bandai Namco Games.', 'CA010', 'CO007', '02-06-2017', 't7.jpg', '4.5', '49.99');
-insert into Jeu values('J0018', 'NieR Automata', 'Nier: Automata est un jeu vidéo de type action-RPG édité par Square Enix.', 'CA007', 'CO006', '23-02-2017', 'na.jpg', '5.0', '59.99');
-insert into Jeu values('J0019', 'Final Fantasy XIV', 'Final Fantasy XIV : A Realm Reborn est un jeu de rôle en ligne massivement multijoueur sur PC développé par Square Enix', 'CA011', 'CO006', '27-08-2013', 'ff14.jpg', '4.0', '19.99');
-insert into Jeu values('J0020', 'Rise of the Tomb Raider', 'Rise of the Tomb Raider est un jeu vidéo d action-aventure de Square Enix', 'CA004', 'CO006', '13-11-2015', 'rottr.jpg', '5.0', '59.99');
+insert into Jeu values('J0001', 'Overwatch', 'Overwatch est un jeu vidéo de tir en vue subjective en ligne développé et publié par Blizzard Entertainment.', 'CA001', 'CO002', '24-05-2016', 'ow.jpg', 'https://www.youtube.com/watch?v=FqnKB22pOC0', '5.0', '39.99');
+insert into Jeu values('J0002', 'Fifa 17', 'FIFA 17 est un jeu vidéo de football développé par EA Canada et édité par Electronic Arts.', 'CA002', 'CO003', '27-09-2016', 'ff17.jpg', 'https://www.youtube.com/watch?v=yYjD78X1d9Q', '4.5', '19.99');
+insert into Jeu values('J0003', 'Assassins Creed Syndicate', 'Assassins Creed Syndicate est un jeu vidéo d action-aventure et d infiltration développé par Ubisoft Québec et édité par Ubisoft.', 'CA003', 'CO001', '23-10-2015', 'asscs.jpg', 'https://www.youtube.com/watch?v=WTBbwgsyxvg', '4.0', '39.99');
+insert into Jeu values('J0004', 'The Division', 'Tom Clancy’s The Division est un jeu vidéo en ligne à monde ouvert de tir tactique et d action-RPG développé par Ubisoft.', 'CA003', 'CO001', '08-03-2016', 'td.jpg', 'https://www.youtube.com/watch?v=yPq_NVi-TC4', '4.0', '49.99');
+insert into Jeu values('J0005', 'Watch Dogs 2', 'Watch Dogs 2, typographié WATCH_DOGS 2, est un jeu vidéo d action-aventure et d infiltration développé par le studio Ubisoft Montréal et édité par Ubisoft.', 'CA008', 'CO001', '29-11-2016', 'wd2.jpg', 'https://www.youtube.com/watch?v=ixDxJ_X1pfo', '4.5', '59.99');
+insert into Jeu values('J0006', 'Far Cry Primal', 'Far Cry Primal est un jeu vidéo d action-aventure à la première personne développé par Ubisoft Montréal se déroulant dans un monde ouvert à l Âge de la pierre.', 'CA004', 'CO001', '23-02-2016', 'fcp.jpg', 'https://www.youtube.com/watch?v=LJ2iH57Fs3M', '4.0', '49.99');
+insert into Jeu values('J0007', 'Call of Duty: Infinite Warfare', 'Call of Duty: Infinite Warfare est un jeu vidéo de tir à la première personne développé par Infinity Ward et édité par Activision.', 'CA001', 'CO004', '04-11-2016', 'cod.jpg', 'https://www.youtube.com/watch?v=EeF3UTkCoxY', '4.5', '59.99');
+insert into Jeu values('J0008', 'Counter-Strike: Global Offensive', 'Counter-Strike: Global Offensive est un jeu de tir à la première personne multijoueur en ligne basé sur le jeu d équipe développé par Valve Corporation.', 'CA001', 'CO008', '21-08-2012', 'csgo.jpg', 'https://www.youtube.com/watch?v=edYCtaNueQY', '4.0', '14.99');
+insert into Jeu values('J0009', 'Dota', 'Dota 2 est un jeu vidéo de type arène de bataille en ligne multijoueur développé et édité par Valve Corporation.', 'CA006', 'CO008', '09-07-2013', 'dota.jpg', 'https://www.youtube.com/watch?v=-cSFPIwMEq4', '4.0', '0.00');
+insert into Jeu values('J0010', 'NBA 2k17', 'NBA 2K17 est un jeu vidéo de basket-ball dévéloppé par Visual Concepts et édité par 2K Sports.', 'CA002', 'CO013', '20-09-2016', 'nba2k17.jpg', 'https://www.youtube.com/watch?v=cQKDcMxTAfw', '4.5', '59.99');
+insert into Jeu values('J0011', 'Titanfall 2', 'Titanfall 2 est un jeu vidéo de tir en vue à la première personne développé par Respawn Entertainment et édité par Electronic Arts.', 'CA001', 'CO003', '28-10-2016', 'tf2.jpg', 'https://www.youtube.com/watch?v=EXwdWuSuiYA', '4.0', '39.99');
+insert into Jeu values('J0012', 'Dirt 4', 'Dirt 4 est un jeu vidéo de course de rallye automobile et il est le quatrième de la série DiRT développé et publié par Codemasters.', 'CA009', 'CO011', '09-06-2017', 'dirt4.jpg', 'https://www.youtube.com/watch?v=uPGxOIXSAG4', '4.5', '59.99');
+insert into Jeu values('J0013', 'Outlast 2', 'Outlast 2 est un jeu vidéo de survival horror en vue à la première personne développé et édité par Red Barrels.', 'CA005', 'CO001', '25-04-2017', 'ol2.jpg', 'https://www.youtube.com/watch?v=EOrTuPljfPU', '4.0', '29.99');
+insert into Jeu values('J0014', 'Battlefield 1', 'Battlefield 1 est un jeu vidéo de tir à la première personne développé par DICE.', 'CA001', 'CO005', '21-10-2016', 'bf1.jpg', 'https://www.youtube.com/watch?v=O3zza3ofZ0Q', '4.0', '23.99');
+insert into Jeu values('J0015', 'Mirrors Edge Catalyst', 'Mirrors Edge Catalyst est un jeu vidéo développé par DICE et édité par Electronic Arts.', 'CA003', 'CO005', '09-06-2016', 'mec.jpg', 'https://www.youtube.com/watch?v=r6GQEtUREWY', '3.5', '12.99');
+insert into Jeu values('J0016', 'Grand Theft Auto V', 'Grand Theft Auto V est un jeu vidéo d action-aventure édité Rockstar Games', 'CA004', 'CO010', '17-09-2013', 'gta5.jpg', 'https://www.youtube.com/watch?v=QkkoHAzjnUs', '4.0', '59.99');
+insert into Jeu values('J0017', 'Tekken 7', 'Tekken 7 est un jeu vidéo de combat de la série Tekken développé et édité par Bandai Namco Games.', 'CA010', 'CO007', '02-06-2017', 't7.jpg', 'https://www.youtube.com/watch?v=uEnz36xOSs4', '4.5', '49.99');
+insert into Jeu values('J0018', 'NieR Automata', 'Nier: Automata est un jeu vidéo de type action-RPG édité par Square Enix.', 'CA007', 'CO006', '23-02-2017', 'na.jpg', 'https://www.youtube.com/watch?v=VtakOsHZPDE', '5.0', '59.99');
+insert into Jeu values('J0019', 'Final Fantasy XIV', 'Final Fantasy XIV : A Realm Reborn est un jeu de rôle en ligne massivement multijoueur sur PC développé par Square Enix', 'CA011', 'CO006', '27-08-2013', 'ff14.jpg', 'https://www.youtube.com/watch?v=39j5v8jlndM', '4.0', '19.99');
+insert into Jeu values('J0020', 'Rise of the Tomb Raider', 'Rise of the Tomb Raider est un jeu vidéo d action-aventure de Square Enix', 'CA004', 'CO006', '13-11-2015', 'rottr.jpg', 'https://www.youtube.com/watch?v=WZhb8ZipUyc', '5.0', '59.99');
 
 insert into Commentaire values('CM001', 'U0001', 'J0002', '12-12-2016', 'Nice game');
 insert into Commentaire values('CM002', 'U0003', 'J0003', '11-01-2017', 'Super, jadore');
@@ -136,4 +137,4 @@ insert into Achat values('A0004', 'U0002', 'J0005', '05-05-2017', '59.99');
 insert into Achat values('A0005', 'U0003', 'J0010', '10-06-2017', '59.99');
 insert into Achat values('A0006', 'U0002', 'J0018', '22-02-2017', '59.99');
 
-insert into Image values('' , '', '');
+insert into Image values('IM001' , 'J0001', '');
