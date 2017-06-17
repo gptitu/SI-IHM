@@ -35,7 +35,7 @@
 			while($_jeu = $this->result->fetch()){
 				$categorie = $categoriedao->loadData("Where id = '" . $_jeu->categorie."'");
 				$constructeur = $constructeurdao->loadData("Where id = '" . $_jeu->constructeur."'");
-				$game[] = new Jeu($_jeu->id, $_jeu->nom, $_jeu->description, $categorie[0], $constructeur[0], $_jeu->datesortie, $_jeu->image, $_jeu->note, $_jeu->prix);
+				$game[] = new Jeu($_jeu->id, $_jeu->nom, $_jeu->description, $categorie[0], $constructeur[0], $_jeu->datesortie, $_jeu->image, $_jeu->lien, $_jeu->note, $_jeu->prix);
 			} return $game;
 		}
 		
@@ -45,7 +45,7 @@
 				
 				if(!$this->exists($_jeu)){
 				
-					$n = $this->bdd->exec("INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()."', '".$_jeu->getConstructeur()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getNote()."', '".$_jeu->getPrix()."')");
+					$n = $this->bdd->exec("INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()->getId()."', '".$_jeu->getConstructeur()->getId()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getLien()."', '".$_jeu->getNote()."', '".$_jeu->getPrix()."')");
 					return $n;
 				
 				} else{ echo 'Cet objet existe deja !'; }
@@ -69,7 +69,7 @@
 			
 			if($_jeu instanceof Jeu){
 				
-				$settings = "SET id='".$_jeu->getId()."', nom='".$_jeu->getNom()."', description='".$_jeu->getDescription()."', categorie='".$_jeu->getCategorie()."', constructeur='".$_jeu->getConstructeur()."', dateSortie='".$_jeu->getDateSortie()."', image='".$_jeu->getImage()."', note='".$_jeu->getNote()."', prix='".$_jeu->getPrix()."'";
+				$settings = "SET id='".$_jeu->getId()."', nom='".$_jeu->getNom()."', description='".$_jeu->getDescription()."', categorie='".$_jeu->getCategorie()->getId()."', constructeur='".$_jeu->getConstructeur()->getId()."', dateSortie='".$_jeu->getDateSortie()."', image='".$_jeu->getImage()."', lien='".$_jeu->getLien()."', note='".$_jeu->getNote()."', prix='".$_jeu->getPrix()."'";
 				
 				$n = $this->bdd->exec("UPDATE Jeu ".$settings." WHERE id='".$_jeu->getId()."'"); 
 				return $n;
