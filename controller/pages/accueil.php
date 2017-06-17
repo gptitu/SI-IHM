@@ -184,7 +184,7 @@
 				
 				<div id="divAchat">
 					
-					<form action="achat.php?id=<?php echo $aLaUne[0]->getId(); ?>" method="post">
+					<form action="doAchat.php?id=<?php echo $aLaUne[0]->getId(); ?>" method="post">
 					
 						<div>
 						
