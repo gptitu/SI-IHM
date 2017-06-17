@@ -70,7 +70,11 @@ create table Image(
 	FOREIGN KEY(jeu) REFERENCES Jeu(id)
 );
 
-/* DONNEES DE TESTS UNITAIRES : */
+/* SEQUENCES : */
+
+CREATE SEQUENCE seqAchat START 7;
+
+/* DONNEES DE TESTS : */
 
 insert into Utilisateur values('U0001', 'Gimmy', 'gimmy@mail.com', 'gptitu');
 insert into Utilisateur values('U0002', 'Pao', 'paopao@mail.com', 'gptitu');

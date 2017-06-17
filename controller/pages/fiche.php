@@ -4,6 +4,7 @@
 	require '../inc/ConstructeurDAO.php';
 	require '../inc/CategorieDAO.php';
 	require '../inc/JeuDAO.php';
+	require '../inc/Utilisateur.php';
 
 	session_start();
 	
@@ -341,7 +342,7 @@
 					
 					<div id="divAchat">
 					
-						<form action="" method="post">
+						<form action="doAchat.php?id=<?php echo $jeu[0]->getId(); ?>" method="post">
 						
 							<div>
 							

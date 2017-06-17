@@ -6,8 +6,8 @@
 
 	session_start();
 	
-	$_SESSION["login"] = true;
-	$_SESSION["user"] = new Utilisateur("U0007", "Gerard", "gerard@gmail.com", "mdpGerard");
+	/*$_SESSION["login"] = true;
+	$_SESSION["user"] = new Utilisateur("U0007", "Gerard", "gerard@gmail.com", "mdpGerard");*/
 	
 	$tof = false;
 	
