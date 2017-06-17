@@ -45,7 +45,7 @@
 				
 				if(!$this->exists($_achat)){
 				
-					$n = $this->bdd->exec("INSERT INTO Achat VALUES('".$_achat->getId()."', '".$_achat->getUtilisateur()."', '".$_achat->getJeu()."', '".$_achat->getDatePayement()."', '".$_achat->getPu()."')");
+					$n = $this->bdd->exec("INSERT INTO Achat VALUES('".$_achat->getId()."', '".$_achat->getUtilisateur()->getId()."', '".$_achat->getJeu()->getId()."', '".$_achat->getDatePayement()."', ".$_achat->getPu().")");
 					return $n;
 				
 				} else{ echo 'Cet objet existe deja !'; }
@@ -69,7 +69,7 @@
 			
 			if($_achat instanceof Achat){
 				
-				$settings = "SET id='".$_achat->getId()."', utilisateur='".$_achat->getUtilisateur()."', jeu='".$_achat->getJeu()."', datePayement='".$_achat->getDatePayement()."', pu='".$_achat->getPu()."'";
+				$settings = "SET id='".$_achat->getId()."', utilisateur='".$_achat->getUtilisateur()->getId()."', jeu='".$_achat->getJeu()->getId()."', datePayement='".$_achat->getDatePayement()."', pu=".$_achat->getPu()."";
 				
 				$n = $this->bdd->exec("UPDATE Achat ".$settings." WHERE id='".$_achat->getId()."'"); 
 				return $n;

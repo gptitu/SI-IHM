@@ -58,6 +58,16 @@
 			$tof2 = false;
 			
 		} if($tof2){
+			
+			if(!isset($_GET["page"])){
+				
+				$page = 1;
+				
+			} else{
+				
+				$page = $_GET["page"];
+				
+			}
 
 ?>
 
@@ -245,7 +255,7 @@
 				
 				<div>
 				
-				<?php for($i = 0; $i < 5 && $i < count($recherches); $i++){ ?>
+				<?php for($i = (5 * ($page-1)); $i < (5 * $page) && $i < count($recherches); $i++){ ?>
 				
 					<div>
 					
@@ -315,7 +325,7 @@
 				
 			<?php
 			
-					if($i < 5){
+					if($i < 5 * $page){
 						echo '<br/>';
 					}
 
@@ -331,7 +341,7 @@
 					
 					<?php for($i = 0; $i < $nbPage; $i++){ ?>
 					
-						<a href="#"><?php echo ($i+1); ?></a>
+						<a href="search.php?page=<?php echo ($i+1); ?>&searchCateg=<?php echo $searchCateg; ?>&searchText=<?php echo $searchText; ?>"><?php echo ($i+1); ?></a>
 					
 					<?php } ?>
 				
