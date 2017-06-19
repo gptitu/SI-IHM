@@ -31,6 +31,7 @@
 			$utilisateur = null;
 			$jeu =null;
 			$_commentaire = null;
+			$comm = null;
 			
 			while($_commentaire = $this->result->fetch()){
 				$utilisateur = $utilisateurdao->loadData("Where id = '" . $_commentaire->utilisateur."'");
@@ -43,12 +44,10 @@
 			
 			if($_commentaire instanceof Commentaire){
 				
-				if(!$this->exists($_commentaire)){
-				
-					$n = $this->bdd->exec("INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getUtilisateur()->getId()."', '".$_commentaire->getJeu()->getId()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')");
-					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
+				$req = "INSERT INTO Commentaire VALUES('".$_commentaire->getId()."', '".$_commentaire->getUtilisateur()->getId()."', '".$_commentaire->getJeu()->getId()."', '".$_commentaire->getDateCom()."', '".$_commentaire->getCommentaire()."')";
+				echo $req.'<br/>';
+				$n = $this->bdd->exec($req);
+				return $n;
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type commentaire ...'; }
 			
@@ -85,6 +84,23 @@
 					echo $commentaires[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "CM";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqCom')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 3){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}
