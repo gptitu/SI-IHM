@@ -4,7 +4,8 @@
 	require '../inc/ConstructeurDAO.php';
 	require '../inc/CategorieDAO.php';
 	require '../inc/JeuDAO.php';
-	require '../inc/Utilisateur.php';
+	require '../inc/UtilisateurDAO.php';
+	require '../inc/CommentaireDAO.php';
 
 	session_start();
 	
@@ -367,6 +368,78 @@
 					</div>
 				
 				</section><br/><hr/>
+				
+				<section>
+				
+					<!-- SECTION COMMENTAIRE -->
+					
+					<?php 
+					
+						$comdao = new CommentaireDAO($bdd);
+						
+						$commentaires = $comdao->loadData(" WHERE jeu='" . $_GET['id'] . "' ORDER BY dateCom DESC LIMIT 5");
+					
+					?>
+					
+					<div>
+					
+						<p>Commentaires (<?php echo count($commentaires); ?>) :</p>
+					
+					</div>
+					
+					<div>
+					
+						<!-- LES COMMENTAIRES -->
+						
+						<?php for($i = 0; $i < count($commentaires); $i++){ ?>
+						
+							<div>
+							
+								<span><?php echo $commentaires[$i]->getUtilisateur()->getUsername(); ?> :<br/></span>
+								
+								<span><?php echo $commentaires[$i]->getCommentaire(); ?><br/></span>
+							
+								<span><em><?php echo $commentaires[$i]->getDateCom(); ?></em></span>
+							
+							</div><br/>
+						
+						<?php 
+					
+							} if($tof){
+						
+						?>
+						
+						<div>
+						
+							<form action="doCommentaire.php?id=<?php echo $_GET['id']; ?>" method="post">
+							
+								<div>
+								
+									<label>Mettre un commentaire :</label>
+								
+								</div>
+								
+								<div>
+								
+									<textarea name="commentaire" rows="" cols="" placeholder="Commentaire"></textarea>
+								
+								</div>
+								
+								<div>
+								
+									<button>Commenter</button>
+								
+								</div>
+							
+							</form>
+						
+						</div>
+						
+						<?php } ?>
+					
+					</div>
+				
+				</section>
 			
 			</div>
 			

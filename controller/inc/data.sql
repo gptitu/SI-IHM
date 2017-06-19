@@ -73,6 +73,7 @@ create table Image(
 /* SEQUENCES : */
 
 CREATE SEQUENCE seqAchat START 7;
+CREATE SEQUENCE seqCom START 7;
 
 /* DONNEES DE TESTS : */
 
