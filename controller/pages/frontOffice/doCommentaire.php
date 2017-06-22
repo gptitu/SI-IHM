@@ -1,12 +1,12 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/ConstructeurDAO.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/JeuDAO.php';
-	require '../inc/UtilisateurDAO.php';
-	require '../inc/CommentaireDAO.php';
-	require '../inc/OtherDAO.php';
+	require '../../inc/model.php';
+	require '../../inc/ConstructeurDAO.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/JeuDAO.php';
+	require '../../inc/UtilisateurDAO.php';
+	require '../../inc/CommentaireDAO.php';
+	require '../../inc/OtherDAO.php';
 	
 	$user = null;
 	$id = null;
@@ -61,7 +61,7 @@
 		$comdao = new CommentaireDAO($bdd);
 		
 		$jeu = $jeudao->loadData("WHERE jeu.id='" . $id . "'");
-		$s_com = str_replace("'", "\\'", $s_com);
+		$s_com = str_replace("'", "''", $s_com);
 		$com = new Commentaire($comdao->nextId(), $user, $jeu[0], $date, $s_com);
 		$comdao->insertData($com);
 		

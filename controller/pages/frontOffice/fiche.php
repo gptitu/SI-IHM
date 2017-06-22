@@ -1,11 +1,11 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/ConstructeurDAO.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/JeuDAO.php';
-	require '../inc/UtilisateurDAO.php';
-	require '../inc/CommentaireDAO.php';
+	require '../../inc/model.php';
+	require '../../inc/ConstructeurDAO.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/JeuDAO.php';
+	require '../../inc/UtilisateurDAO.php';
+	require '../../inc/CommentaireDAO.php';
 
 	session_start();
 	

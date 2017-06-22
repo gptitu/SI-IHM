@@ -1,9 +1,10 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/ConstructeurDAO.php';
-	require '../inc/JeuDAO.php';
+	require '../../inc/model.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/ConstructeurDAO.php';
+	require '../../inc/JeuDAO.php';
+	require '../../inc/Utilisateur.php';
 
 	session_start();
 	

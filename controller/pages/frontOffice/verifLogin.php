@@ -1,7 +1,7 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/UtilisateurDAO.php';
+	require '../../inc/model.php';
+	require '../../inc/UtilisateurDAO.php';
 
 	if(isset($_POST["username"]) && isset($_POST["password"])){
 		

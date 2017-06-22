@@ -1,8 +1,8 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/Utilisateur.php';
+	require '../../inc/model.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/Utilisateur.php';
 
 	session_start();
 	

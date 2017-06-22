@@ -1,12 +1,12 @@
 <?php
 
-	require '../inc/model.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/ConstructeurDAO.php';
-	require '../inc/JeuDAO.php';
-	require '../inc/Utilisateur.php';
-	require '../inc/OtherDAO.php';
-	require '../inc/AchatDAO.php';
+	require '../../inc/model.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/ConstructeurDAO.php';
+	require '../../inc/JeuDAO.php';
+	require '../../inc/Utilisateur.php';
+	require '../../inc/OtherDAO.php';
+	require '../../inc/AchatDAO.php';
 	
 	$user = null;
 	

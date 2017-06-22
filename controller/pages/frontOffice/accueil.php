@@ -1,12 +1,12 @@
 <?php
 
-	require '../inc/model.php';
+	require '../../inc/model.php';
 
-	require '../inc/ConstructeurDAO.php';
-	require '../inc/CategorieDAO.php';
-	require '../inc/JeuDAO.php';
-	require '../inc/OtherDAO.php';
-	require '../inc/Utilisateur.php';
+	require '../../inc/ConstructeurDAO.php';
+	require '../../inc/CategorieDAO.php';
+	require '../../inc/JeuDAO.php';
+	require '../../inc/OtherDAO.php';
+	require '../../inc/Utilisateur.php';
 	
 	$bdd = getConnexion("pgsql", "5432", "GameBuy", "postgres", "11111996rga");
 	

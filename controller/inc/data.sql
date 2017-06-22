@@ -9,6 +9,7 @@ Create table Utilisateur(
 	username varchar(20),
 	email varchar(20),
 	password varchar(20),
+	admini boolean,
 	PRIMARY KEY(id)
 );
 
@@ -70,16 +71,11 @@ create table Image(
 	FOREIGN KEY(jeu) REFERENCES Jeu(id)
 );
 
-/* SEQUENCES : */
+/* DONNEES DE TESTS UNITAIRES : */
 
-CREATE SEQUENCE seqAchat START 7;
-CREATE SEQUENCE seqCom START 7;
-
-/* DONNEES DE TESTS : */
-
-insert into Utilisateur values('U0001', 'Gimmy', 'gimmy@mail.com', 'gptitu');
-insert into Utilisateur values('U0002', 'Pao', 'paopao@mail.com', 'gptitu');
-insert into Utilisateur values('U0003', 'Tiantsoa', 'tiantsoa@mail.com', 'gptitu');
+insert into Utilisateur values('U0001', 'Gimmy', 'gimmy@mail.com', 'gptitu','true');
+insert into Utilisateur values('U0002', 'Pao', 'paopao@mail.com', 'gptitu','true');
+insert into Utilisateur values('U0003', 'Tiantsoa', 'tiantsoa@mail.com', 'gptitu','true');
 
 insert into Constructeur values('CO001', 'Ubisoft');
 insert into Constructeur values('CO002', 'Blizzard');
@@ -143,3 +139,12 @@ insert into Achat values('A0005', 'U0003', 'J0010', '10-06-2017', '59.99');
 insert into Achat values('A0006', 'U0002', 'J0018', '22-02-2017', '59.99');
 
 insert into Image values('IM001' , 'J0001', '');
+
+/* Sequences ;  */
+
+create Sequence seqUtilisateur START 4;
+create Sequence seqJeu START 21;
+create Sequence seqConstructeur START 14;
+create Sequence seqCom START 7;
+create Sequence seqCategorie START 12;
+create Sequence seqAchat START 7;
