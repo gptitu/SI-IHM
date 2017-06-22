@@ -21,7 +21,7 @@
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_utilisateur = null;
 			while($_utilisateur = $this->result->fetch()){
-				$user[] = new Utilisateur($_utilisateur->id, $_utilisateur->username, $_utilisateur->email, $_utilisateur->password);
+				$user[] = new Utilisateur($_utilisateur->id, $_utilisateur->username, $_utilisateur->email, $_utilisateur->password, $_utilisateur->admini);
 			} return $user;
 		}
 		
@@ -29,12 +29,10 @@
 			
 			if($_utilisateur instanceof Utilisateur){
 				
-				if(!$this->exists($_utilisateur)){
-				
-					$n = $this->bdd->exec("INSERT INTO Utilisateur VALUES('".$_utilisateur->getId()."', '".$_utilisateur->getUsername()."', '".$_utilisateur->getEmail()."', '".$_utilisateur->getPassword()."')");
+					$req = "INSERT INTO Utilisateur VALUES('".$_utilisateur->getId()."', '".$_utilisateur->getUsername()."', '".$_utilisateur->getEmail()."', '".$_utilisateur->getPassword()."', '".$_utilisateur->getAdmini()."')";
+					echo $req;
+					$n = $this->bdd->exec($req);
 					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type utilisateur ...'; }
 			
@@ -55,7 +53,7 @@
 			
 			if($_utilisateur instanceof Utilisateur){
 				
-				$settings = "SET id='".$_utilisateur->getId()."', username='".$_utilisateur->getUsername()."', email='".$_utilisateur->getEmail()."', password='".$_utilisateur->getPassword()."'";
+				$settings = "SET id='".$_utilisateur->getId()."', username='".$_utilisateur->getUsername()."', email='".$_utilisateur->getEmail()."', password='".$_utilisateur->getPassword()."', admini='".$_utilisateur->getAdmini()."'";
 				
 				$n = $this->bdd->exec("UPDATE Utilisateur ".$settings." WHERE id='".$_utilisateur->getId()."'"); 
 				return $n;
@@ -71,7 +69,24 @@
 					echo $users[$i]->toString();
 					$i++;
 			}
-		}		
+		}
+		
+		public function nextId(){
+		
+			$id = "U";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqUtilisateur')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 4){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
+		}
 		
 	}
 ?>

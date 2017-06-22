@@ -32,13 +32,11 @@
 		public function insertData($_categorie){
 			
 			if($_categorie instanceof Categorie){
-				
-				if(!$this->exists($_categorie)){
-				
-					$n = $this->bdd->exec("INSERT INTO Categorie VALUES('".$_categorie->getId()."', '".$_categorie->getCategorie()."')");
+					
+					$req = "INSERT INTO Categorie VALUES('".$_categorie->getId()."', '".$_categorie->getCategorie()."')";
+					echo $req;
+					$n = $this->bdd->exec($req);
 					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type utilisateur ...'; }
 			
@@ -75,6 +73,23 @@
 					echo $categories[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "CA";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqCategorie')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 3){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}

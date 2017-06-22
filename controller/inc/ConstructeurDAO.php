@@ -33,12 +33,10 @@
 			
 			if($_constructeur instanceof Constructeur){
 				
-				if(!$this->exists($_constructeur)){
-				
-					$n = $this->bdd->exec("INSERT INTO Constructeur VALUES('".$_constructeur->getId()."', '".$_constructeur->getNom()."')");
+					$req = "INSERT INTO Constructeur VALUES('".$_constructeur->getId()."', '".$_constructeur->getNom()."')";
+					echo $req;
+					$n = $this->bdd->exec($req);
 					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type utilisateur ...'; }
 			
@@ -75,6 +73,23 @@
 					echo $constructeurs[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "CO";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqConstructeur')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 3){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}

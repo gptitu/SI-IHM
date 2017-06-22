@@ -43,12 +43,10 @@
 			
 			if($_jeu instanceof Jeu){
 				
-				if(!$this->exists($_jeu)){
-				
-					$n = $this->bdd->exec("INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()->getId()."', '".$_jeu->getConstructeur()->getId()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getLien()."', ".$_jeu->getNote().", ".$_jeu->getPrix().")");
+					$req = "INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()->getId()."', '".$_jeu->getConstructeur()->getId()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getLien()."', ".$_jeu->getNote().", ".$_jeu->getPrix().")";
+					echo $req;
+					$n = $this->bdd->exec($req);
 					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type jeu ...'; }
 			
@@ -85,6 +83,23 @@
 					echo $jeux[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "J";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqJeu')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 4){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}
