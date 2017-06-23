@@ -1,5 +1,5 @@
 <?php
-	class Achat{
+	class Image{
 		
 		private $id = "";
 		private $jeu = null;

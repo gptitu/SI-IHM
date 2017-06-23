@@ -6,7 +6,7 @@
 	include('Jeu.php');
 	include('JeuDAO.php');*/
 	
-	class imageDAO{
+	class ImageDAO{
 		
 		private $img;
 		private $result;
