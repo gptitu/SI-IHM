@@ -43,12 +43,10 @@
 			
 			if($_achat instanceof Achat){
 				
-				if(!$this->exists($_achat)){
-				
-					$n = $this->bdd->exec("INSERT INTO Achat VALUES('".$_achat->getId()."', '".$_achat->getUtilisateur()->getId()."', '".$_achat->getJeu()->getId()."', '".$_achat->getDatePayement()."', '".$_achat->getPu()."')");
-					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
+				$req = "INSERT INTO Achat VALUES('".$_achat->getId()."', '".$_achat->getUtilisateur()->getId()."', '".$_achat->getJeu()->getId()."', '".$_achat->getDatePayement()."', ".$_achat->getPu().")";
+				echo $req;
+				$n = $this->bdd->exec($req);
+				return $n;
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type achat ...'; }
 			
@@ -69,7 +67,7 @@
 			
 			if($_achat instanceof Achat){
 				
-				$settings = "SET id='".$_achat->getId()."', utilisateur='".$_achat->getUtilisateur()->getId()."', jeu='".$_achat->getJeu()->getId()."', datePayement='".$_achat->getDatePayement()."', pu='".$_achat->getPu()."'";
+				$settings = "SET id='".$_achat->getId()."', utilisateur='".$_achat->getUtilisateur()->getId()."', jeu='".$_achat->getJeu()->getId()."', datePayement='".$_achat->getDatePayement()."', pu=".$_achat->getPu()."";
 				
 				$n = $this->bdd->exec("UPDATE Achat ".$settings." WHERE id='".$_achat->getId()."'"); 
 				return $n;
@@ -85,6 +83,23 @@
 					echo $achats[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "A";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqAchat')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 4){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}

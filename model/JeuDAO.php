@@ -43,12 +43,10 @@
 			
 			if($_jeu instanceof Jeu){
 				
-				if(!$this->exists($_jeu)){
-				
-					$n = $this->bdd->exec("INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()->getId()."', '".$_jeu->getConstructeur()->getId()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getLien()."', '".$_jeu->getNote()."', '".$_jeu->getPrix()."')");
+					$req = "INSERT INTO Jeu VALUES('".$_jeu->getId()."', '".$_jeu->getNom()."', '".$_jeu->getDescription()."', '".$_jeu->getCategorie()->getId()."', '".$_jeu->getConstructeur()->getId()."', '".$_jeu->getDateSortie()."', '".$_jeu->getImage()."', '".$_jeu->getLien()."', ".$_jeu->getNote().", ".$_jeu->getPrix().")";
+					echo $req;
+					$n = $this->bdd->exec($req);
 					return $n;
-				
-				} else{ echo 'Cet objet existe deja !'; }
 				
 			} else{ echo 'Erreur : cette variable n\'est pas un objet de type jeu ...'; }
 			
@@ -69,7 +67,7 @@
 			
 			if($_jeu instanceof Jeu){
 				
-				$settings = "SET id='".$_jeu->getId()."', nom='".$_jeu->getNom()."', description='".$_jeu->getDescription()."', categorie='".$_jeu->getCategorie()->getId()."', constructeur='".$_jeu->getConstructeur()->getId()."', dateSortie='".$_jeu->getDateSortie()."', image='".$_jeu->getImage()."', lien='".$_jeu->getLien()."', note='".$_jeu->getNote()."', prix='".$_jeu->getPrix()."'";
+				$settings = "SET id='".$_jeu->getId()."', nom='".$_jeu->getNom()."', description='".$_jeu->getDescription()."', categorie='".$_jeu->getCategorie()->getId()."', constructeur='".$_jeu->getConstructeur()->getId()."', dateSortie='".$_jeu->getDateSortie()."', image='".$_jeu->getImage()."', lien='".$_jeu->getLien()."', note=".$_jeu->getNote().", prix=".$_jeu->getPrix()."";
 				
 				$n = $this->bdd->exec("UPDATE Jeu ".$settings." WHERE id='".$_jeu->getId()."'"); 
 				return $n;
@@ -85,6 +83,23 @@
 					echo $jeux[$i]->toString();
 					$i++;
 			}
+		}
+		
+		public function nextId(){
+		
+			$id = "J";
+			
+			$odao = new OtherDAO($this->bdd);
+			
+			$rs = $odao->loadData("SELECT nextval('seqJeu')");
+			$nx = ""+$rs[0]->nextval;
+			
+			while(strlen($nx) < 4){
+				$nx = "0".$nx;
+			} $id = $id . $nx;
+			
+			return $id;
+		
 		}
 		
 	}
