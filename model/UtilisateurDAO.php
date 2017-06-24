@@ -21,7 +21,7 @@
 			$this->result->setFetchMode(PDO::FETCH_OBJ);
 			$_utilisateur = null;
 			while($_utilisateur = $this->result->fetch()){
-				$user[] = new Utilisateur($_utilisateur->id, $_utilisateur->username, $_utilisateur->email, $_utilisateur->password, $_utilisateur->admini);
+				$user[] = new Utilisateur($_utilisateur->id, $_utilisateur->username, $_utilisateur->email, $_utilisateur->password, $_utilisateur->admini, $_utilisateur->banni);
 			} return $user;
 		}
 		
@@ -29,7 +29,7 @@
 			
 			if($_utilisateur instanceof Utilisateur){
 				
-					$req = "INSERT INTO Utilisateur VALUES('".$_utilisateur->getId()."', '".$_utilisateur->getUsername()."', '".$_utilisateur->getEmail()."', '".$_utilisateur->getPassword()."', '".$_utilisateur->getAdmini()."')";
+					$req = "INSERT INTO Utilisateur VALUES('".$_utilisateur->getId()."', '".$_utilisateur->getUsername()."', '".$_utilisateur->getEmail()."', '".$_utilisateur->getPassword()."', '".$_utilisateur->getAdmini()."', '".$_utilisateur->getBanni()."')";
 					echo $req;
 					$n = $this->bdd->exec($req);
 					return $n;
@@ -53,7 +53,7 @@
 			
 			if($_utilisateur instanceof Utilisateur){
 				
-				$settings = "SET id='".$_utilisateur->getId()."', username='".$_utilisateur->getUsername()."', email='".$_utilisateur->getEmail()."', password='".$_utilisateur->getPassword()."', admini='".$_utilisateur->getAdmini()."'";
+				$settings = "SET id='".$_utilisateur->getId()."', username='".$_utilisateur->getUsername()."', email='".$_utilisateur->getEmail()."', password= '".$_utilisateur->getPassword()."', admini='".$_utilisateur->getAdmini()."', banni='".$_utilisateur->getBanni()."'";
 				
 				$n = $this->bdd->exec("UPDATE Utilisateur ".$settings." WHERE id='".$_utilisateur->getId()."'"); 
 				return $n;

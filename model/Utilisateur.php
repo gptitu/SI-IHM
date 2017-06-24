@@ -6,13 +6,15 @@
 		private $email = "";
 		private $password = "";
 		private $admini = "";
+		private $banni = "";
 		
-		public function __construct($i, $u, $m, $p, $a){
+		public function __construct($i, $u, $m, $p, $a, $b){
 			$this->id = $i;
 			$this->username = $u;
 			$this->email = $m;
 			$this->password = $p;
 			$this->admini = $a;
+			$this->banni = $b;
 		}
 		
 		public function getId(){
@@ -30,9 +32,12 @@
 		public function getAdmini(){
 			return $this->admini;
 		}
+		public function getBanni(){
+			return $this->banni;
+		}
 		
 		public function toString(){
-			return $this->id." : ".$this->username." : ".$this->email." : ".$this->password." : ".$this->admini."<br/>";
+			return $this->id." : ".$this->username." : ".$this->email." : ".$this->password." : ".$this->admini." : ".$this->banni."<br/>";
 		}
 		
 	}

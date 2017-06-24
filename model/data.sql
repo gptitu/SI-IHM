@@ -8,8 +8,9 @@ Create table Utilisateur(
 	id varchar(5),
 	username varchar(20),
 	email varchar(20),
-	password varchar(20),
+	password varchar(255),
 	admini boolean,
+	banni boolean,
 	PRIMARY KEY(id)
 );
 
@@ -73,9 +74,16 @@ create table Image(
 
 /* DONNEES DE TESTS UNITAIRES : */
 
-insert into Utilisateur values('U0001', 'Gimmy', 'gimmy@mail.com', 'gptitu','true');
-insert into Utilisateur values('U0002', 'Pao', 'paopao@mail.com', 'gptitu','true');
-insert into Utilisateur values('U0003', 'Tiantsoa', 'tiantsoa@mail.com', 'gptitu','true');
+insert into Utilisateur values('U0001', 'Gimmy', 'gimmy@mail.com', 'gptitu','true','false');
+insert into Utilisateur values('U0002', 'Pao', 'paopao@mail.com', 'gptitu','true','false');
+insert into Utilisateur values('U0003', 'Tiantsoa', 'tiantsoa@mail.com', 'gptitu','true','false');
+insert into Utilisateur values('U0004', 'Jean', 'jean@mail.com', 'jean007','false','false');
+insert into Utilisateur values('U0005', 'Popey', 'popey@mail.com', 'pops20','false','true');
+insert into Utilisateur values('U0006', 'Rakoto', 'rakoto@mail.com', 'rkt2','false','false');
+insert into Utilisateur values('U0007', 'Gerrard', 'gerrard@mail.com', 'gg','false','true');
+insert into Utilisateur values('U0008', 'Bryan', 'bryan@mail.com', 'tekken','false','false');
+insert into Utilisateur values('U0009', 'Dominique', 'dominique@mail.com', 'fast','false','false');
+insert into Utilisateur values('U0010', 'Logan', 'logan@mail.com', 'xmen','false','false');
 
 insert into Constructeur values('CO001', 'Ubisoft');
 insert into Constructeur values('CO002', 'Blizzard');
@@ -132,11 +140,46 @@ insert into Commentaire values('CM005', 'U0002', 'J0007', '02-02-2017', 'Il est 
 insert into Commentaire values('CM006', 'U0002', 'J0020', '02-02-2017', 'GG WP');
 
 insert into Achat values('A0001', 'U0001', 'J0002', '10-12-2016', '19.99');
-insert into Achat values('A0002', 'U0003', 'J0003', '08-01-2017', '39.99');
-insert into Achat values('A0003', 'U0001', 'J0002', '02-02-2017', '39.99');
-insert into Achat values('A0004', 'U0002', 'J0005', '05-05-2017', '59.99');
-insert into Achat values('A0005', 'U0003', 'J0010', '10-06-2017', '59.99');
+insert into Achat values('A0002', 'U0003', 'J0003', '02-01-2017', '39.99');
+insert into Achat values('A0003', 'U0001', 'J0002', '08-01-2017', '39.99');
+insert into Achat values('A0004', 'U0002', 'J0005', '05-02-2017', '59.99');
+insert into Achat values('A0005', 'U0003', 'J0010', '10-02-2017', '59.99');
 insert into Achat values('A0006', 'U0002', 'J0018', '22-02-2017', '59.99');
+insert into Achat values('A0007', 'U0002', 'J0003', '12-03-2017', '39.99');
+insert into Achat values('A0008', 'U0003', 'J0002', '15-03-2017', '19.99');
+insert into Achat values('A0009', 'U0001', 'J0020', '30-03-2017', '59.99');
+insert into Achat values('A0010', 'U0002', 'J0010', '28-04-2017', '59.99');
+insert into Achat values('A0011', 'U0003', 'J0005', '02-05-2017', '59.99');
+insert into Achat values('A0012', 'U0001', 'J0014', '03-05-2017', '23.99');
+insert into Achat values('A0013', 'U0001', 'J0009', '08-05-2017', '0.00');
+insert into Achat values('A0014', 'U0003', 'J0012', '10-05-2017', '59.99');
+insert into Achat values('A0015', 'U0003', 'J0007', '15-05-2017', '59.99');
+insert into Achat values('A0016', 'U0002', 'J0008', '23-05-2017', '14.99');
+insert into Achat values('A0017', 'U0001', 'J0001', '05-06-2017', '39.99');
+insert into Achat values('A0018', 'U0003', 'J0015', '06-06-2017', '12.99');
+insert into Achat values('A0019', 'U0002', 'J0001', '15-06-2017', '39.99');
+insert into Achat values('A0020', 'U0001', 'J0003', '17-06-2017', '39.99');
+insert into Achat values('A0021', 'U0004', 'J0012', '10-06-2017', '59.99');
+insert into Achat values('A0022', 'U0006', 'J0020', '15-05-2017', '59.99');
+insert into Achat values('A0023', 'U0008', 'J0002', '09-06-2017', '19.99');
+insert into Achat values('A0024', 'U0008', 'J0005', '04-04-2017', '59.99');
+insert into Achat values('A0025', 'U0010', 'J0010', '16-02-2017', '59.99');
+insert into Achat values('A0026', 'U0009', 'J0015', '25-03-2017', '12.99');
+insert into Achat values('A0027', 'U0003', 'J0007', '18-03-2017', '59.99');
+insert into Achat values('A0028', 'U0002', 'J0004', '06-06-2017', '49.99');
+insert into Achat values('A0029', 'U0004', 'J0005', '06-01-2017', '59.99');
+insert into Achat values('A0030', 'U0008', 'J0014', '27-05-2017', '23.99');
+insert into Achat values('A0031', 'U0010', 'J0013', '06-05-2017', '29.99');
+insert into Achat values('A0032', 'U0009', 'J0009', '07-05-2017', '0.00');
+insert into Achat values('A0033', 'U0004', 'J0017', '15-04-2017', '49.99');
+insert into Achat values('A0034', 'U0006', 'J0018', '13-01-2017', '59.99');
+insert into Achat values('A0035', 'U0008', 'J0007', '12-02-2017', '59.99');
+insert into Achat values('A0036', 'U0004', 'J0002', '27-03-2017', '19.99');
+insert into Achat values('A0037', 'U0006', 'J0001', '17-06-2017', '39.99');
+insert into Achat values('A0038', 'U0009', 'J0006', '19-04-2017', '49.99');
+insert into Achat values('A0039', 'U0010', 'J0014', '01-04-2017', '23.99');
+insert into Achat values('A0040', 'U0009', 'J0007', '13-04-2017', '59.99');
+
 
 insert into Image values('IM001' , 'J0001', 'Overwatch/1.jpg');
 insert into Image values('IM002' , 'J0001', 'Overwatch/2.jpg');
@@ -246,5 +289,5 @@ create Sequence seqJeu START 21;
 create Sequence seqConstructeur START 14;
 create Sequence seqCom START 7;
 create Sequence seqCategorie START 12;
-create Sequence seqAchat START 7;
+create Sequence seqAchat START 41;
 create Sequence seqImage START 101;
